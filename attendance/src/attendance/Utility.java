@@ -34,10 +34,10 @@ public class Utility{
 	}
 
 	public static boolean noNegations(String s, int psn){
-		return true;
+		if()
+
+
 	}
-
-
 	public static String getInput(){
 		return inputSource.nextLine();
 	}
