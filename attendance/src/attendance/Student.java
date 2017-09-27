@@ -22,25 +22,25 @@ public class Student implements Attendee {
 	@Override
 	public String getFirstName() {
 		// TODO Auto-generated method stub
-		return this.firstName;
+		return firstName;
 	}
 
 	@Override
 	public String getLastName() {
 		// TODO Auto-generated method stub
-		return this.lastName;
+		return lastName;
 	}
 
 	@Override
 	public boolean mathces(String first, String last) {
 		// TODO Auto-generated method stub
-		return first == firstName && last == lastName;
+		return first.toLowerCase().equals(firstName.toLowerCase()) && last.toLowerCase().equals(lastName.toLowerCase());
 	}
 
 	@Override
 	public boolean matches(String last) {
 		// TODO Auto-generated method stub
-		return last == lastName;
+		return last.toLowerCase().equals(lastName.toLowerCase());
 	}
 
 	@Override
@@ -64,12 +64,12 @@ public class Student implements Attendee {
 			}
 				if (this.isPres)
 				{
-				theResult += "PRESENT";
+				theResult += "PRESENT\n";
 				return theResult;
 				}
 
 		}
-		theResult += "ABSENT";
+		theResult += "ABSENT\n";
 		return theResult;
 	}
 
