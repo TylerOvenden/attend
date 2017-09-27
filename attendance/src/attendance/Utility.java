@@ -34,8 +34,8 @@ public class Utility{
 	}
 
 	public static boolean noNegations(String s, int psn){
-		if()
-
+		if(s.substring(psn +	)
+			
 
 	}
 	public static String getInput(){
