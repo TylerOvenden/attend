@@ -21,6 +21,29 @@ public class Utility{
 		}
 
 	}
+	/**
+	 * This method return the index of keyword in the searchString 
+	 * where keyword is isolated and has noNegations. It returns -1 if the
+	 * keyword is not found
+	 * @return
+	 */
+	public static int findKeyword(String searchString, String keyword, int startPsn) {
+		//make lowercase
+		searchString = searchString.toLowerCase();
+		keyword = keyword.toLowerCase();
+		//find the first position after the startPsn
+		int psn = searchString.indexOf(keyword, startPsn);
+		//keep searching until keyword is found (noNegations and isolated)
+		while(psn >= 0) {
+			
+			if (keywordIsIsolated(psn, keyword, searchString) && noNegations(searchString, psn)) {
+				return psn;
+			} else {
+				psn = searchString.indexOf(keyword, psn+1);
+			}
+		}
+		return -1;
+	}
 
 	public static boolean keywordIsIsolated(int psn, String keyword, String s){
 		if (s.substring(psn + keyword.length()+1).equals(" "))
