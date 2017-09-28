@@ -35,7 +35,7 @@ public class Utility{
 		int psn = searchString.indexOf(keyword, startPsn);
 		//keep searching until keyword is found (noNegations and isolated)
 		while(psn >= 0) {
-			
+			 
 			if (keywordIsIsolated(psn, keyword, searchString) && noNegations(searchString, psn)) {
 				return psn;
 			} else {
