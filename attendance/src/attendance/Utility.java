@@ -56,11 +56,17 @@ public class Utility{
 		}	return false;
 	}
 
-	public static boolean noNegations(String s, int psn){
-		if(s.substring(psn +	)
-			
-
-	}
+ public static boolean noNegations(String s, int psn){
+	  String not = "not";
+	  String no = "no";
+	  if(psn == 0) {
+		  return true;
+	  }
+	  if(not.equals(s.substring(psn-4,psn-1)) || no.equals(s.substring(psn-3, psn-1))) {
+		  return false;
+	  }
+	  return true;
+  }
 	public static String getInput(){
 		return inputSource.nextLine();
 	}
