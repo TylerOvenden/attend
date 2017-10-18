@@ -66,6 +66,7 @@ public class ArraysMain {
 		}
 		return result;
 	}
+	
 	public int longestConsecutiveSequence(int[] arr) {
 		int result = 1;
 		int scl = 1;
