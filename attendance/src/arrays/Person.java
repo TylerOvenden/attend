@@ -14,25 +14,36 @@ public class Person {
 	private Hobby hobby;
 	private Person[] friends;
 	
-	public Person(String first, String last, Borough home) {
-		this.firstName = first;
-		this.lastName = last;
+	public Person(String firstName, String lastName, Borough home){
+		this.firstName =  firstName;
+		this.lastName = lastName;
 		this.home = home;
 		this.hobby = Hobby.randomHobby();
-		friends = new Person[3];
+		this.friends = new Person[3];
 	}
-	/*
-	 * chooses friends from people based on who is of the same class
-	 * as this instance and who has the same hobbies
-	 */
+	
 	public void mingle(Person[] people) {
-		for(Person p: people) {
-			if(p != this)
-				p = betterFriend(p, friends[0]);	
+		for (Person p: people){
+			if(p != this) {
+				p = betterFriend(p,friends[0]);
 				
 				addFriendToFirstPlace(p);
+			}
 		}
-		
+	}
+	public void printFriends() {
+		System.out.println("My name is " + firstName + " " + lastName + " and these are all my friends:");
+		for (Person f: friends) {
+			if(f!= null) {
+				System.out.println(f);
+			}
+		}
+	}
+	public void addFriendToFirstPlace(Person p) {
+		for(int i =friends.length-1; i > 0;i--){
+			friends[i] = friends[i-1];
+		}
+		friends[0] = p;
 	}
 	private Person betterFriend(Person p, Person q) {
 		if(p == null) {
@@ -41,11 +52,11 @@ public class Person {
 		if(q == null) {
 			return p;
 		}
-		if(p.getClass() == this.getClass() && q.getClass() == this.getClass()) {
+		if(p.getClass() == q.getClass() && p.getClass() == this.getClass()) {
 			if(p.hobby == this.hobby) {
 				return p;
 			}
-			else if(q.hobby == this.hobby) {
+			if(q.hobby == this.hobby) {
 				return q;
 			}
 		}
@@ -55,36 +66,10 @@ public class Person {
 		if(q.getClass() == this.getClass()) {
 			return q;
 		}
-		else
-		return p;
-	}
-	public void printFriends() {
-		System.out.println("My name is" + firstName + lastName + " and these are my friends:");
-		
-		for(Person f: friends) {
-			if(f != null)
-				
-		}
-	}
-	/*
-	 * moves all Person in friends back one index 
-	 * as this instance and who has the same hobbies
-	 */
-	private void addFriendToFirstPlace(Person p) {
-		for(int i = friends.length-1; i >0; i--) {
-			friends[i] = friends[i=1];
-			
-		}
-		friends[0] = p;
+		return q;
 	}
 	
 	public String toString() {
-		return "My namea "+firstName+" "+lastName+" and I live in "+home+" I like." + hobby;
+		return "My name is " + firstName + " " + lastName + " and i live in " + home + ". I like " + hobby + ". ";
 	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
