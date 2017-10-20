@@ -94,7 +94,7 @@ public class AttendanceApp {
 		return null;
 	}
 
-	public String getAllFirstNamesMAtchingLastName(String entry) {
+	public String getAllFirstNamesMatchingLastName(String entry) {
 		String firstNams= "";
 		for(int i = 0; i < students.length; i++){
 			if(entry.toLowerCase().equals(students[i].getLastName().toLowerCase())){
