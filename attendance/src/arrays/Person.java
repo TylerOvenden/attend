@@ -13,15 +13,54 @@ public class Person {
 	private Borough home;
 	private Hobby hobby;
 	private Person[] friends;
-	
+	private String nick;
 	public Person(String firstName, String lastName, Borough home){
 		this.firstName =  firstName;
 		this.lastName = lastName;
 		this.home = home;
+		//this.nick = createNickname(firstName);
 		this.hobby = Hobby.randomHobby();
 		this.friends = new Person[3];
 	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	// java is pass by value 
+	// meaning the parameters of a method are just values not references
+	//if you change those values, the orignal object is not effected
+	//in this case, name will not be changed . in fact, nothing can change 
+	//this.firstName via name\
+	//if you change the reference you are changing the whole value
+	public static String createNickname(String name) {
+		String nick; 
+		int secondVowel = findSecond(name);
+		nick = name.substring(0,secondVowel);
+		return nick;
+	}
 	
+	private static int findSecond(String name) {
+		int index = name.length();
+		boolean secondfound = false;
+		name = name.toLowerCase();
+		for(int i = 0; i < name.length(); i++) {
+			if(name.substring(i,i+1).equals("a") || name.substring(i,i+1).equals("e") || name.substring(i,i+1).equals("i") || name.substring(i,i+1).equals("o") || name.substring(i,i+1).equals("u")){
+				secondfound = true;
+				
+			}
+		if(!secondfound) {
+			
+			
+		}	
+		}
+			
+		return index;	
+	}
 	public void mingle(Person[] people) {
 		for (Person p: people){
 			if(p != this) {
