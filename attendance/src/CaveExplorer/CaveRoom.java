@@ -73,6 +73,72 @@ public class CaveRoom {
 		}
 		
 	}
+	public void enter() {
+		contents = "X";
+	}
+	public void leave() {
+		contents = defaultContents;
+		
+	}
+	/**
+	 * Gives this room access to anotherRoom (and vice-versa)
+	 * and sets a door between them, updating the directions
+	 * @param direction
+	 * @param anotherRoom
+	 * @param door
+	 */
+	public void setConnection(int direction, CaveRoom anotherRoom, Door door) {
+		
+		addRoom(direction, anotherRoom,door);
+		anotherRoom.addRoom(oppositeDirection(direction), this, door);
+	}
+	
+	public static int oppositeDirection(int direction) {
+		// TODO Auto-generated method stub
+		return (direction+2)%4;
+	}
+
+	private void addRoom(int direction, CaveRoom cave, Door door) {
+		borderingRooms[direction] = cave;
+		doors[direction] = door;
+		setDirections();
+	}
+	public void interpretInput(String input) {
+		while(isValid(input)) {
+			System.out.println("You can only enter 'w', 'a', 's' or 'd'");
+			input = CaveExplorer.in.nextLine();
+		}
+		int direction = 0;
+		String dirs = "wdsa";
+		goToRoom(dirs.indexOf(input));
+	}
+
+	private boolean isValid(String input) {
+		String validEntries = "wdsa";
+		return validEntries.indexOf(input) > -1 && input.length() == 1;
+	}
+
+	private void goToRoom(int direction) {
+		//first, protect against null pointer exception
+		//user cannot go through non-existent door 
+		if(borderingRooms[direction] != null && doors[direction] != null) {
+			CaveExplorer.currentRoom.leave();
+			CaveExplorer.currentRoom = borderingRooms[direction];
+			CaveExplorer.currentRoom.enter();
+			CaveExplorer.inventory.updateMap();
+		}
+		
+	}
+	/*
+	 * this will be where your group sets up all the caves 
+	 * and all the connections
+	 */
+	public static void setUpCave() {
+		
+		
+		
+	}
+
 	/** 
 	 * converts an int to a direction 
 	 * toDirection(0) -> "the north"
