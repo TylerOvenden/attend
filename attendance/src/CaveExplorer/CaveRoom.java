@@ -18,7 +18,7 @@ public class CaveRoom {
 	
 	
 	public String getDescription() {
-		return description;
+		return description + "/n" + directions;
 	}
 
 	public void setDescription(String description) {
@@ -104,7 +104,7 @@ public class CaveRoom {
 		setDirections();
 	}
 	public void interpretInput(String input) {
-		while(isValid(input)) {
+		while(!isValid(input)) {
 			System.out.println("You can only enter 'w', 'a', 's' or 'd'");
 			input = CaveExplorer.in.nextLine();
 		}
@@ -115,6 +115,7 @@ public class CaveRoom {
 
 	private boolean isValid(String input) {
 		String validEntries = "wdsa";
+	//System.out.println("Checking for input " +input+ ", got index" + );
 		return validEntries.indexOf(input) > -1 && input.length() == 1;
 	}
 
@@ -134,7 +135,26 @@ public class CaveRoom {
 	 * and all the connections
 	 */
 	public static void setUpCave() {
+		//all of this code can be changed
+		//1. decide how big your cave should be 
+		CaveExplorer.caves = new CaveRoom[5][5];
+		//2. populate with caves and a default description
+		for(int row = 0; row < CaveExplorer.caves.length; row++) {
+			for(int col = 0; col < CaveExplorer.caves[row].length; col++ ) {
+				//create a default caves 
+				CaveExplorer.caves[row][col] = new CaveRoom("This cave has coords ("+row+","+col+")");
+				
+			}
+		}
+		//3. replace defualt rooms with custom rooms
+		// will do this later
 		
+		//4. set your starting room:
+		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
+		CaveExplorer.currentRoom.enter();
+		//5. set up doors 
+		CaveRoom[][] c = CaveExplorer.caves;
+		c[0][1].setConnection(SOUTH, c[1][1], new Door());
 		
 		
 	}
@@ -148,6 +168,11 @@ public class CaveRoom {
 	private static String toDirection(int dir) {
 		String[] arr= {"the north", "the east", "the south", "the west"};
 		return arr[dir];
+	}
+
+	public static void setUpCaves() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
