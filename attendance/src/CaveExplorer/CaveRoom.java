@@ -105,31 +105,62 @@ public class CaveRoom {
 	}
 	public void interpretInput(String input) {
 		while(!isValid(input)) {
-			System.out.println("You can only enter 'w', 'a', 's' or 'd'");
+			printAllowedEntry();
 			input = CaveExplorer.in.nextLine();
 		}
-		int direction = 0;
-		String dirs = "wdsa";
-		goToRoom(dirs.indexOf(input));
+		String dirs = validKeys();
+		
+		respondToKey(dirs.indexOf(input));
+	}
+	/**
+	 * override to add more keys, always include wdsa
+	 * 
+	 * @return
+	 */
+	public String validKeys() {
+		return "wdsa";
+		
+	}
+	/**
+	 * override to print a custom string describing what keys do
+	 * 
+	 */
+	public void printAllowedEntry() {
+		System.out.println("You can only enter 'w', 'a', 's' or 'd'");
+		
 	}
 
 	private boolean isValid(String input) {
-		String validEntries = "wdsa";
+		String validEntries = validKeys();
 	//System.out.println("Checking for input " +input+ ", got index" + );
 		return validEntries.indexOf(input) > -1 && input.length() == 1;
 	}
 
-	private void goToRoom(int direction) {
+	private void respondToKey(int direction) {
 		//first, protect against null pointer exception
 		//user cannot go through non-existent door 
+		if(direction < 4) {
 		if(borderingRooms[direction] != null && doors[direction] != null) {
 			CaveExplorer.currentRoom.leave();
 			CaveExplorer.currentRoom = borderingRooms[direction];
 			CaveExplorer.currentRoom.enter();
 			CaveExplorer.inventory.updateMap();
 		}
+	}else 
+		performAction(direction);
 		
+
 	}
+	/** 
+	 * 
+	 * 
+	 * @param direction
+	 */
+	public void performAction(int direction) {
+		// TODO Auto-generated method stub
+		System.out.println("That key does nothing");
+	}
+
 	/*
 	 * this will be where your group sets up all the caves 
 	 * and all the connections
