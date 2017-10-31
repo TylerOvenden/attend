@@ -159,7 +159,7 @@ public class CaveRoom {
 	public void performAction(int direction) {
 		// TODO Auto-generated method stub
 		System.out.println("That key does nothing");
-	}
+	} 
 
 	/*
 	 * this will be where your group sets up all the caves 

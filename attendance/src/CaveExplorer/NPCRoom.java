@@ -73,7 +73,7 @@ public class NPCRoom extends CaveRoom {
 		else {
 			return super.getDescription();
 			
-		}
+		} 
 		}
 		
 	}

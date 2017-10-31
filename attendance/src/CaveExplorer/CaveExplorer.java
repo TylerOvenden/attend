@@ -8,6 +8,7 @@ public class CaveExplorer {
 	public static Inventory inventory;
 	public static boolean playing = true;
 	
+	
 	public static void main(String[] args) {
 		in = new Scanner(System.in);
 		CaveRoom.setUpCaves();
