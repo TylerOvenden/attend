@@ -2,6 +2,7 @@ package javaHard;
 
 public class RoamingAnimal extends Animal {
 
+	//protected = subclasses can access, private elsewise
 	protected Habitat habitat;
 	private boolean sex;
 
