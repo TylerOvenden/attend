@@ -31,7 +31,7 @@ public class Animal {
 			trait2 = new Trait();
 			
 		}
-		
+		this.description = description;
 	}
 	private String getName() {
 		// TODO Auto-generated method stub
